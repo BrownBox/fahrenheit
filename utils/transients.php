@@ -15,6 +15,32 @@ class BB_Transients {
         add_action('wp_update_nav_menu', array($this, 'wp_update_nav_menu'), 10, 2);
     }
 
+    public static function name($args) {
+
+        extract($args);
+
+        $local['file'] = basename($file, '.php');
+        $local['folders'] = explode('/', dirname($file));
+        $local['folder'] = $local['folders'][count($local['folders'])-1];
+
+        $key = md5(dirname($file).'/'.$file);
+
+        if(!isset($ID)) {
+            global $post;
+            $ID = $post->ID;
+        }
+
+        if (false === ($var = get_transient(ns_.'var_'.$ID))) {
+            $var = setup_post($ID);
+        }
+        extract($var);
+
+        $t_name = ns_.$local['folder'].'_'.$local['file'].'_'.$name.'_'.$key;
+
+        return $t_name;
+
+    }
+    
     /**
      * @param array $args {
      *     Optional. Arguments used to find matching transients. If empty, will return all transients.
