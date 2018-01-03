@@ -3,21 +3,21 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-        <script defer src="https://use.fontawesome.com/releases/v5.0.2/js/all.js"></script>
 <?php
 $favicon = bb_get_theme_mod(ns_.'favicon');
-if ($favicon) echo '        <link rel="icon" href="'.$favicon.'" type="image/png">'."\n";
+if ($favicon) {
+    echo '        <link rel="icon" href="'.$favicon.'" type="image/png">'."\n";
+}
 wp_head();
 ?>
 <script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-67704837-1', 'auto');
-  ga('send', 'pageview');
-
+//     ga('create', 'UA-67704837-1', 'auto'); @todo
+    ga('send', 'pageview');
 </script>
 <style>
 /* START: <?php echo $t_args['file'].' - '.date("Y-m-d H:i:s"); ?> */

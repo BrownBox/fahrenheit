@@ -28,16 +28,17 @@ class bb_enqueue {
         // Theme styles
         wp_enqueue_style('theme_style', get_stylesheet_directory_uri().'/css/style.css', array(), filemtime(get_stylesheet_directory().'/css/style.css'));
         wp_enqueue_style('theme_dynamic', get_stylesheet_directory_uri().'/css/'.bb_get_dynamic_styles_filename(), array(), filemtime(get_stylesheet_directory().'/css/'.bb_get_dynamic_styles_filename()));
-        // wp_enqueue_style('fontawesome', '//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css', array(), '4');
-    	wp_enqueue_style('slick', get_stylesheet_directory_uri().'/css/vendor/slick.css', array(), '1.5.8');
+        wp_enqueue_style('slick', get_stylesheet_directory_uri().'/css/vendor/slick.css', array(), '1.5.8');
 
         // Header scripts
+//         wp_enqueue_script('fontawesome', get_template_directory_uri().'/js/fontawesome-all.min.js', array(), '5.0.2'); Pro version
+        wp_enqueue_script('fontawesome', '//use.fontawesome.com/releases/v5.0.2/js/all.js', array(), '5.0.2'); // Free version
 
         // Footer sripts
-        // wp_enqueue_script('what-input', get_template_directory_uri().'/js/vendor/what-input.js', array('jquery'), '1.0.0', true);
-        wp_enqueue_script('zurb', get_template_directory_uri().'/js/foundation.min.js', array('jquery'), '1.0.0', true);
-        wp_enqueue_script('slick', get_template_directory_uri().'/js/vendor/slick.min.js', array('jquery'), '1.5.8', true);
-        wp_enqueue_script('theme_scripts', get_template_directory_uri().'/js/bb.js', array('jquery', 'slick'), '7.0.5', true);
+        wp_enqueue_script('what-input', get_template_directory_uri().'/js/vendor/what-input.js', array('jquery'), '4.2.0', true);
+        wp_enqueue_script('zurb', get_template_directory_uri().'/js/foundation.min.js', array('jquery'), '6.4.2', true);
+        wp_enqueue_script('slick', get_template_directory_uri().'/js/vendor/slick.min.js', array('jquery'), '1.8.0', true);
+        wp_enqueue_script('theme_scripts', get_template_directory_uri().'/js/bb.js', array('jquery', 'slick'), '8.0.0', true);
 
         // Remove admin-only styles for front end
         if (!is_admin()) {
