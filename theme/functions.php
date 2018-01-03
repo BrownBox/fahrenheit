@@ -38,14 +38,17 @@ class bb_theme {
         if (!isset($name) || !$file) {
             return;
         }
+        if (!isset($class)) {
+            $class = 'no-class'; // other options include 'fluid' and 'full' or any custom classes for outer wrapper
+        }
+        if (!isset($grid_type)) {
+            $grid_type = 'grid-x grid-margin-x'; // other options include 'grid-y', 'grid-padding-x', etc
+        }
         if (!isset($inner_class)) {
-            $inner_class = 'row'; // other options include 'row'
+            $inner_class = ''; // custom classes for inner wrapper
         }
         if (!isset($type)) {
-            $type = 'div'; // other options include 'section', 'footer', etc...
-        }
-        if (!isset($class)) {
-            $class = 'no-class'; // other options include 'section', 'footer', etc...
+            $type = 'div'; // could be any block-level HTML element
         }
         if (!isset($dir)) {
             $dir = 'sections';
@@ -55,10 +58,10 @@ class bb_theme {
         }
 
         // setup the wrapper
-        echo "\n" . '<!-- ' . $name . ' -->' . "\n";
-        echo "\n" . '<!-- ' . $file . ' -->' . "\n";
-        echo '<' . $type . ' id="row-' . $name . '" class="row-wrapper ' . $class . '">' . "\n";
-        echo '    <div id="row-inner-' . $name . '" class="row-inner-wrapper ' . $inner_class . '" data-section_name="'.$file.'">' . "\n";
+        echo "\n".'<!-- '.$name.' -->'."\n";
+        echo "\n".'<!-- '.$file.' -->'."\n";
+        echo '<'.$type.' id="row-'.$name.'" class="grid-container '.$class.'">'."\n";
+        echo '    <div id="row-inner-'.$name.'" class="'.$grid_type.' '.$inner_class.'" data-section_name="'.$file.'">'."\n";
 
         $template_details = array(
                 'directory' => $dir,
@@ -72,9 +75,9 @@ class bb_theme {
             self::load_section($template_details);
         }
 
-        echo '    </div>' . "\n";
-        echo '</' . $type . '>' . "\n";
-        echo '<!-- end ' . $name . ' -->' . "\n";
+        echo '    </div>'."\n";
+        echo '</'.$type.'>'."\n";
+        echo '<!-- end '.$name.' -->'."\n";
     }
 
     static private function load_section($template_details) {
@@ -133,6 +136,12 @@ class bb_theme {
         }
     }
 
+    /**
+     * Generate list of posts (e.g. for an archive page)
+     * @param array|string $args
+     * @return string
+     * @todo rebuild using cards framework
+     */
     static function list_posts($args) {
         is_array($args) ? extract($args) : parse_str($args);
 
@@ -149,6 +158,7 @@ class bb_theme {
             $type = 'post'; // any valid post type
         }
 
+        $final_content = '<div class="grid-container">'."\n";
         if (post_type_exists($type)) {
             $args = array(
                     'post_type' => $type,
@@ -165,13 +175,13 @@ class bb_theme {
                         $no_images = array();
 
                         // Primary items (ones with a featured image)
-                        $final_content .= '<'.$outer_element.' class="bb_posts_wrapper row small-up-1 medium-up-2 large-up-3">'."\n";
+                        $final_content .= '<'.$outer_element.' class="bb_posts_wrapper grid-x grid-margin-x small-up-1 medium-up-2 large-up-3">'."\n";
                         foreach ($posts as $item) {
                             if (!has_post_thumbnail($item->ID)) {
                                 $no_images[] = $item;
                                 continue;
                             }
-                            $final_content .= '  <'.$inner_element.' class="bb_posts_item column">'."\n";
+                            $final_content .= '  <'.$inner_element.' class="bb_posts_item cell">'."\n";
                             if (!empty($item->post_content)) {
                                 $final_content .= '    <a href="'.get_the_permalink($item).'">'."\n";
                             }
@@ -205,6 +215,8 @@ class bb_theme {
                 }
             }
         }
+        $final_content .= '</div>'."\n";
+
         return $final_content;
     }
 

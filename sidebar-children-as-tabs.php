@@ -21,10 +21,10 @@
 global $post;
 
 $section_args = array(
-    'namespace' => 'sidebar-children-as-tabs', // remember to use keywords like 'section' or 'nav' where practical.
-    'filename'  => str_replace(get_stylesheet_directory(), "", __FILE__ ), // relative path from the theme folder
-    'get_meta'  => false,
-    );
+        'namespace' => 'sidebar-children-as-tabs', // remember to use keywords like 'section' or 'nav' where practical.
+        'filename'  => str_replace(get_stylesheet_directory(), "", __FILE__ ), // relative path from the theme folder
+        'get_meta'  => false,
+);
 
 $transients = false; // change this to false to force all transients to refresh
 // reset_transients( $section_args['namespace'] ); // force a reset of all transients for this namespace.
@@ -210,7 +210,7 @@ if ( false === ( $ob = get_transient( $transient ) ) ) {
 
 
     if (!empty($menu)) {
-    ?>
+?>
     <div class="hide-for-medium row" data-sticky-container>
         <div class="sticky small-24 column" data-sticky data-sticky-on="small" data-anchor="row-children-as-tabs">
             <ul class="menu tabs vertical" data-accordion-menu>
@@ -226,9 +226,8 @@ if ( false === ( $ob = get_transient( $transient ) ) ) {
     <ul class="show-for-medium menu tabs vertical" id="about-us-tabs" data-tabs>
     	<?php echo $menu; ?>
     </ul>
-    <?php
+<?php
     }
-
 
     // section content - end
     echo '<!-- END:'.$section_args['filename'].' -->'."\n";

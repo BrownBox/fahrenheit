@@ -3,5 +3,5 @@
  * Template Name: Children as Paragraphs
  */
 get_header();
-bb_theme::section('name=content&file=children-as-paragraphs.php&inner_class=row');
+bb_theme::section('name=content&file=children-as-paragraphs.php');
 get_footer();

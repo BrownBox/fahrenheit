@@ -39,8 +39,8 @@ wp_head();
 <?php locate_template(array('sections/offcanvas.php'), true); ?>
                 <div class="off-canvas-content" data-off-canvas-content>
                     <header class="hide-for-print clearfix">
-<?php bb_theme::section('name=hero&file=new-hero.php&inner_class=row relative hero-height'); ?>
-<?php bb_theme::section('name=breadcrumbs&file=breadcrumbs.php&inner_class=row'); ?>
+<?php bb_theme::section('name=hero&file=new-hero.php&inner_class=relative hero-height'); ?>
+<?php bb_theme::section('name=breadcrumbs&file=breadcrumbs.php'); ?>
                     </header>
                     <section class="main-section">
-<?php bb_theme::section('name=panels-top&file=panels-top.php&inner_class=row-full');
+<?php bb_theme::section('name=panels-top&file=panels-top.php&class=full');

@@ -1,4 +1,4 @@
 <?php
 get_header();
-bb_theme::section('name=content&file=archive.php&inner_class=row');
+bb_theme::section('name=content&file=archive.php');
 get_footer();

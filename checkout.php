@@ -9,5 +9,5 @@ if(count($_SESSION[BB_CART_SESSION_ITEM]) == 0){
 }
 
 get_header();
-bb_theme::section('name=checkout&file=checkout.php&inner_class=row' );
+bb_theme::section('name=checkout&file=checkout.php' );
 get_footer();

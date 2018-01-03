@@ -8,12 +8,12 @@
 	.gform_wrapper .gform_footer:not(.top_label) { margin-left: 0!important;}
 
 }
-@media only screen and (min-width: 40em) { /* <-- min-width 640px - medium screens and up */ 
+@media only screen and (min-width: 40em) { /* <-- min-width 640px - medium screens and up */
 
 }
-@media only screen and (min-width: 64em) { /* <-- min-width 1024px - large screens and up */ 
+@media only screen and (min-width: 64em) { /* <-- min-width 1024px - large screens and up */
 	.bbconnect {width: 60%;float: left;}
-	
+
 
 
 }
@@ -27,14 +27,9 @@
  */
 get_header();
 ob_start();
-bb_theme::section('name=content&file=content.php&inner_class=row');
+bb_theme::section('name=content&file=content.php');
 $ob = ob_get_clean();
 $entry = GFAPI::get_entry( $_GET['e'] );
-
-// if ( is_user_logged_in() ) {
-// //     var_dump($entry);
-//     var_dump($entry["1.3"], $entry["payment_amount"] );
-// }
 switch ($_GET['f']) {
     case 31: // checkout form
         $ob = str_replace('%%FirstName%%', $entry["1.3"], $ob);

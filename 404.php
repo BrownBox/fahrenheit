@@ -42,6 +42,6 @@ if (defined('BB_SUPER_SEARCH') && BB_SUPER_SEARCH) {
     exit;
 } else {
     get_header();
-    bb_theme::section('name=content&file=404.php&inner_class=row');
+    bb_theme::section('name=content&file=404.php');
     get_footer();
 }
