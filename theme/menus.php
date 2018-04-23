@@ -2,7 +2,8 @@
 register_nav_menus(array(
         'top' => 'Top',
         'main' => 'Main',
-        'footer' => 'Footer',
+        'footer-left' => 'Footer Left',
+        'footer-right' => 'Footer Right',
 ));
 
 function bb_menu($args, $echo = true) {

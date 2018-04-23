@@ -1,64 +1,29 @@
 <?php
 /**
- * Based on @version 1.0.3
- *
- * Main content for donate page
- *
- * STEP 2: CODE
- * @todo code the local css. Mobile 1st, then medium and large.
- *
- * STEP 3: SIGN_OFF
- * @todo review code quality (& rework as required)
- * @todo review and promote css (as required)
- * @todo reset transients and retest
- * @todo set transients for production
- * @todo leave sign-off name and date
+ * @version F.1.0
  *
  */
 
+// -------------------------------
+// 1. setup the post and the data
+// -------------------------------
 global $post;
+extract(bb_theme::setup_data(__FILE__));
+$t_period = LONG_TERM;
 
-if (is_archive()) {
-    $archive_page = get_page_by_path(get_post_type($post));
-    $meta = bb_get_post_meta($archive_page->ID);
-    $transient_suffix = '_'.get_post_type($post);
-} elseif (is_home() && !is_front_page()) {
-    $blog_page = get_option('page_for_posts', true);
-    $meta = bb_get_post_meta($blog_page);
-    $transient_suffix = '_'.get_post_type($post);
-} else {
-    $ancestors = get_ancestors($post->ID, get_post_type($post));
-    $ancestor_string = '';
-    if (!empty($ancestors)) {
-        $ancestor_string = '_'.implode('_', $ancestors);
-    }
-    $transient_suffix = $ancestor_string.'_'.$post->ID;
-    $meta = bb_get_post_meta($post->ID);
-}
-
-$filename = str_replace(get_stylesheet_directory(), "", __FILE__); // Relative path from the theme folder
-$transient_suffix .= '_'.md5($filename);
-
-$section_args = array(
-        'namespace' => basename(__FILE__, '.php').'_', // Remember to use keywords like 'section' or 'nav' where logical
-        'filename'  => $filename,
-        'transients' => defined(WP_BB_ENV) && WP_BB_ENV == 'PRODUCTION', // Set this to false to force all transients to refresh
-        'transient_suffix' => $transient_suffix,
-        'meta' => $meta,
-);
-
-// ---------------------------------------
-// setup local css transient for this file
-// ---------------------------------------
-$transient = ns_.$section_args['namespace'].'css_'.$section_args['filename'].'_'.md5($section_args['filename']);
-if (false === $section_args['transients']) {
+// -------------------------------------------
+// 2. setup local css transient for this file
+// -------------------------------------------
+$t_args = array('name' => 'css', 'file' => $file);
+$transient = BB_Transients::name($t_args);
+if (!BB_Transients::use_transients()) {
     delete_transient($transient);
 }
 if (false === ($ob = get_transient($transient))) {
     ob_start();
-?>
+    ?>
 <style>
-/* START: <?php echo $section_args['filename'].' - '.date("Y-m-d H:i:s"); ?> */
+/* START: <?php echo $file.' - '.date("Y-m-d H:i:s"); ?> */
 @media only screen {
 
     .gform_bb.gfield_click_array div.s-html-wrapper.s-passive { background-color: rgba(247, 148, 29, 0.1);  border: 3px solid <?php echo bb_get_theme_mod('bb_colour3');?>!important; border-radius: 2px!important;}
@@ -114,122 +79,109 @@ if (false === ($ob = get_transient($transient))) {
     .gform_bb.gfield_click_array div.s-html-wrapper div.s-html-value { font-size: 1.2rem!important;}
 
     .gform_bb #input_21_4_1 {max-width: 92%;}
-
 }
 @media only screen and (min-width: 64em) { /* <-- min-width 1024px - large screens and up */
     .featured-image {margin-top: 0rem;}
-
- }
+}
 @media only screen and (min-width: <?php echo ROW_MAX_WIDTH; ?> ) {}
 @media only screen and (min-width: <?php echo SITE_MAX_WIDTH; ?> ) {}
-/* END: <?php echo $section_args['filename']; ?> */
+/* END: <?php echo $file; ?> */
 </style>
 <?php
     $ob = ob_get_clean();
-    if (true === $section_args['transients']) {
-        set_transient($transient, $ob, LONG_TERM);
-    }
-    echo $ob; // Intentionally inside transient check as if transient exists, will be output in header.php
-    unset($ob);
+    set_transient($transient, $ob, $t_period);
 }
-unset($transient);
+echo $ob;
+unset($ob, $t_args, $transient);
 
-// ---------------------------------------
-// setup local css transient for this post
-// ---------------------------------------
-$transient = ns_.$section_args['namespace'].'css'.$section_args['transient_suffix'];
-if (false === $section_args['transients']) {
+// -------------------------------------------
+// 3. setup local css transient for this post
+// -------------------------------------------
+$t_args = array('name' => 'css'.$transient_suffix, 'file' => $file);
+$transient = BB_Transients::name($t_args);
+if (!BB_Transients::use_transients()) {
     delete_transient($transient);
 }
 if (false === ($ob = get_transient($transient))) {
     ob_start();
 ?>
 <style>
-/* START: <?php echo $section_args['filename'].' - '.date("Y-m-d H:i:s"); ?> */
+/* START: <?php echo $file.' - '.date("Y-m-d H:i:s"); ?> */
 @media only screen {}
 @media only screen and (min-width: 40em) { /* <-- min-width 640px - medium screens and up */ }
 @media only screen and (min-width: 64em) { /* <-- min-width 1024px - large screens and up */ }
 @media only screen and (min-width: <?php echo ROW_MAX_WIDTH; ?> ) {}
 @media only screen and (min-width: <?php echo SITE_MAX_WIDTH; ?> ) {}
-/* END: <?php echo $section_args['filename']; ?> */
+/* END: <?php echo $file; ?> */
 </style>
 <?php
     $ob = ob_get_clean();
-    if (true === $section_args['transients']) {
-        set_transient($transient, $ob, LONG_TERM);
-    }
-    echo $ob; // Intentionally inside transient check as if transient exists, will be output in header.php
-    unset($ob);
+    set_transient($transient, $ob, $t_period);
 }
-unset($transient);
+echo $ob;
+unset($ob, $t_args, $transient);
 
-// ------------------------
-// setup output transient/s
-// ------------------------
-$transient = ns_.$section_args['namespace'].'markup'.$section_args['transient_suffix'];
-if (false === $section_args['transients']) {
+// ----------------------------
+// 4. setup output transient/s
+// ----------------------------
+$t_args = array('name' => 'markup'.$transient_suffix, 'file' => $file);
+$transient = BB_Transients::name($t_args);
+if (!BB_Transients::use_transients()) {
     delete_transient($transient);
 }
 if (false === ($ob = get_transient($transient))) {
     ob_start();
 
     // section content - start
-    echo '<!-- START: '.$section_args['filename'].' -->'."\n";
+    echo '<!-- START: '.$file.' -->'."\n";
 
     // section content
 ?>
-<div class="gift-selection-page-wrapper">
-    <div class="small-24 medium-24 large-14 column">
-        <h1 class="text4"><?php the_title(); ?></h1>
-        <article>
-            <?php gravity_form(bb_cart_get_donate_form(), false, false, false, null, false, 12); ?>
-            <p><small><strong>Secure 128bit encryption</strong><br>
-                Protected by an industry-standard high grade 128bit encryption, using SSL technology.</small></p>
-             <img class="secure-seal show-for-small-only float-center" src="<?php echo '../wp-content/uploads/comodo-padlock.png'; ?>" alt="This site is secured with Comodo" width="150" >
-            <img class="secure-seal show-for-medium" src="<?php echo '../wp-content/uploads/comodo-padlock.png'; ?>" alt="This site is secured with Comodo" width="150" >
-        </article>
-    </div>
-    <div class="small-24 medium-24 large-10 column">
+<div class="small-24 medium-24 large-12 cell">
+    <h1 class="text4"><?php the_title(); ?></h1>
+    <article>
+        <?php gravity_form(bb_cart_get_donate_form(), false, false, false, null, false, 12); ?>
+        <p><small><strong>Secure 128bit encryption</strong><br>
+            Protected by an industry-standard high grade 128bit encryption, using SSL technology.</small></p>
+         <img class="secure-seal show-for-small-only float-center" src="<?php echo '../wp-content/uploads/comodo-padlock.png'; ?>" alt="This site is secured with Comodo" width="150" >
+        <img class="secure-seal show-for-medium" src="<?php echo '../wp-content/uploads/comodo-padlock.png'; ?>" alt="This site is secured with Comodo" width="150" >
+    </article>
+</div>
+<div class="small-24 medium-24 large-6 cell">
 <?php
-            global $post;
+    global $post;
 
-            if (has_post_thumbnail( $post->ID ) ){
-                $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' );
-            }
+    if (has_post_thumbnail( $post->ID ) ){
+        $image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'large' );
+    }
 ?>
-        <div class="row">
-            <div class="medium-24 column">
-                <img class="featured-image" src="<?php echo $image[0]; ?>" alt="">
-            </div>
-            <div class="content">
-                <?php echo apply_filters('the_content', $post->post_content ) ?>
-            </div>
+    <div class="grid-x grid-margin-x">
+        <div class="medium-24 cell">
+            <img class="featured-image" src="<?php echo $image[0]; ?>" alt="">
+        </div>
+        <div class="content">
+            <?php echo apply_filters('the_content', $post->post_content ) ?>
         </div>
     </div>
-    <?php ?>
-    <div class="small-24 medium-24 large-10 column">
-        <div class="donations-allocation-section">
-            <div class="row medium-24 column">
+</div>
+<div class="small-24 medium-24 large-6 cell">
+    <div class="donations-allocation-section grid-x grid-margin-x">
+        <div class="medium-12 large-24 cell">
+             <p>@todo</p>
+        </div>
+    	<div class="other-ways medium-12 large-24 cell">
+            <div class="donation-options">
                  <p>@todo</p>
             </div>
-        	<div class="other-ways">
-                <div class="medium-24 donation-options">
-                     <p>@todo</p>
-                </div>
-        	</div>
-        </div>
+    	</div>
     </div>
-    <?php  ?>
 </div>
 <?php
     // section content - end
-    echo '<!-- END:'.$section_args['filename'].' -->'."\n";
+    echo '<!-- END:'.$file.' -->'."\n";
 
     $ob = ob_get_clean();
-    if (true === $section_args['transients']) {
-        set_transient($transient, $ob, LONG_TERM);
-    }
+    set_transient($transient, $ob, $t_period);
 }
 echo $ob;
-unset($ob);
-unset($transient);
+unset($ob, $t_args, $transient);

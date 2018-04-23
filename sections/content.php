@@ -21,11 +21,11 @@ if (!BB_Transients::use_transients()) {
 }
 if (false === ($ob = get_transient($transient))) {
     ob_start();
-?>
+    ?>
 <style>
 /* START: <?php echo $file.' - '.date("Y-m-d H:i:s"); ?> */
 @media only screen {}
-@media only screen and (min-width: 40em) { /* <-- min-width 640px - medium screens and up */ }
+@media only screen and (min-width: 40em) { /* <-- min-width 640px - medium screens and up */}
 @media only screen and (min-width: 64em) { /* <-- min-width 1024px - large screens and up */ }
 @media only screen and (min-width: <?php echo ROW_MAX_WIDTH; ?> ) {}
 @media only screen and (min-width: <?php echo SITE_MAX_WIDTH; ?> ) {}
@@ -80,8 +80,32 @@ if (false === ($ob = get_transient($transient))) {
     echo '<!-- START: '.$file.' -->'."\n";
 
     // section content
-    echo $file;
-
+    $class = 'small-24 medium-15 large-17 cell';
+    if (!is_singular()) {
+?>
+<div class="<?php echo $class; ?>">
+<?php
+        $class = '';
+    }
+    while (have_posts()) {
+        the_post();
+?>
+    <article <?php post_class($class); ?>>
+        <h1><?php the_title(); ?></h1>
+		<?php the_content(); ?>
+    </article>
+<?php
+    }
+    if (!is_singular()) {
+?>
+</div>
+<?php
+    }
+?>
+<aside class="small-24 medium-9 large-7 cell">
+    <?php get_sidebar(); ?>
+</aside>
+<?php
     // section content - end
     echo '<!-- END:'.$file.' -->'."\n";
 

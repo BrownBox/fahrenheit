@@ -22,6 +22,7 @@ $theme_files = array(
         array('file' => 'featured-image.php',       'dir' => 'fx'),
         array('file' => 'hero.php',                 'dir' => 'fx'),
         array('file' => 'hierarchy-walker.php',     'dir' => 'fx'),
+        array('file' => 'login.php',                'dir' => 'fx'),
         // array('file' => 'map.php',                  'dir' => 'fx'),
         array('file' => 'meta.php',                 'dir' => 'fx'),
         array('file' => 'pagination.php',           'dir' => 'fx'),
@@ -30,7 +31,6 @@ $theme_files = array(
         array('file' => 'slug.php',                 'dir' => 'fx'),
         array('file' => 'time.php',                 'dir' => 'fx'),
         // array('file' => 'tracking-widget.php',      'dir' => 'fx'),
-        array('file' => 'setup_data.php',           'dir' => 'fx'),
 
         // Miscellaneous utilities
         array('file' => 'cookies.php',              'dir' => 'utils'), // BB_Cookie()       - handy cookie management

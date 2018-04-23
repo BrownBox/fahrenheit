@@ -1,12 +1,10 @@
 <?php
-bb_theme::section('name=panels-bottom&file=panels-bottom.php&class=full');
+bb_show_panels('bottom');
 bb_theme::section('name=footer&file=footer.php&class=hide-for-print&type=footer');
 bb_theme::section('name=copyright&file=copyright.php&class=hide-for-print&type=footer');
 ?>
-                        </section>
-                    </div><!-- end off-canvas-content -->
-                </div><!-- end off-canvas-wrapper-inner -->
-            </div><!-- end off-canvas-wrapper -->
+                </section>
+            </div><!-- end off-canvas-content -->
         </div><!-- end everything -->
         <?php wp_footer(); ?>
         <script>
@@ -16,7 +14,7 @@ bb_theme::section('name=copyright&file=copyright.php&class=hide-for-print&type=f
             if (typeof ajaxurl === 'undefined') {
                 var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
             }
-<?php if ( ! is_admin() ) { ?>
+<?php if (!is_admin()) { ?>
             var $buoop = {c:2};
             function $buo_f() {
                 var e = document.createElement("script");

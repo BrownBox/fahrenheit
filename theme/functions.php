@@ -35,7 +35,7 @@ class bb_theme {
         is_array($args) ? extract($args) : parse_str($args);
 
         // check for required variables
-        if (!isset($name) || !$file) {
+        if (!isset($name) || (!isset($file) && !isset($content))) {
             return;
         }
         if (!isset($class)) {
@@ -60,19 +60,25 @@ class bb_theme {
         // setup the wrapper
         echo "\n".'<!-- '.$name.' -->'."\n";
         echo "\n".'<!-- '.$file.' -->'."\n";
-        echo '<'.$type.' id="row-'.$name.'" class="grid-container '.$class.'">'."\n";
+        echo '<'.$type.' '.$style.' id="row-'.$name.'" class="grid-container '.$class.'">'."\n";
         echo '    <div id="row-inner-'.$name.'" class="'.$grid_type.' '.$inner_class.'" data-section_name="'.$file.'">'."\n";
 
-        $template_details = array(
-                'directory' => $dir,
-                'file' => $file,
-        );
+        if (isset($file) && $file != false) {
+            $template_details = array(
+                    'directory' => $dir,
+                    'file' => $file
+            );
 
-        if (isset($lazy_load) && $lazy_load == true) {
-            echo '<p class="text-center"><i class="fa fa-3x fa-spin fa-spinner"></i></p>'."\n";
-            self::$lazy_load_sections[$name] = $template_details;
-        } else {
-            self::load_section($template_details);
+            if (isset($lazy_load) && $lazy_load == true) {
+                echo '<p class="text-center"><i class="fas fa-3x fa-spin fa-spinner"></i></p>' . "\n";
+                self::$lazy_load_sections[$name] = $template_details;
+            } else {
+                self::load_section($template_details);
+            }
+        }
+
+        if (isset($content) && $file == false) {
+            echo $content;
         }
 
         echo '    </div>'."\n";
@@ -356,6 +362,52 @@ class bb_theme {
             $title = "$title $sep " . sprintf(__('Page %s', THEME_TEXTDOMAIN), max($paged, $page));
         }
         return $title;
+    }
+
+    static function setup_data($file, $term = MEDIUM_TERM) {
+        global $post;
+        $transient_name = ns_.'var_'.$post->ID;
+        if (!BB_Transients::use_transients()) {
+            delete_transient($transient_name);
+        }
+        if (false === ($var = get_transient($transient_name))) {
+            $var = array(
+                    'file' => str_replace(get_stylesheet_directory(), '', $file),
+                    'meta' => array(),
+                    'ancestors' => array(),
+                    'ancestor_string' => '',
+                    'archive_page' => null,
+                    'transient_suffix' => '',
+            );
+
+            if (is_search()) {
+                $var['transient_suffix'] .= '_search';
+                $var['search_string'] = $_GET['s'];
+            }
+
+            if (is_singular()) {
+                $var['meta'] = bb_get_post_meta($post->ID);
+                $var['ancestors'] = get_ancestors($post->ID, get_post_type($post));
+                if (!empty($var['ancestors'])) {
+                    $var['ancestor_string'] .= '_'.implode('_', $ancestors);
+                }
+                $var['transient_suffix'] .= $var['ancestor_string'].'_'.$post->ID;
+            }
+
+            if (is_archive()) {
+                $var['transient_suffix'] .= '_'.get_query_var('post_type');
+                $var['archive_page'] = get_page_by_path(get_query_var('post_type'));
+                $var['meta'] = bb_get_post_meta($var['archive_page']->ID);
+            } elseif (is_home() && !is_front_page()) {
+                $var['transient_suffix'] .= '_post';
+                $var['archive_page'] = get_option('page_for_posts', true);
+                $var['meta']= bb_get_post_meta($var['archive_page']);
+            }
+
+            set_transient($transient_name, $var, $term);
+        }
+
+        return $var;
     }
 
     static function custom_adminbar($wp_admin_bar) {

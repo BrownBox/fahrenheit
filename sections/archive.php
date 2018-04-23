@@ -21,7 +21,7 @@ if (!BB_Transients::use_transients()) {
 }
 if (false === ($ob = get_transient($transient))) {
     ob_start();
-?>
+    ?>
 <style>
 /* START: <?php echo $file.' - '.date("Y-m-d H:i:s"); ?> */
 @media only screen {}
@@ -80,8 +80,32 @@ if (false === ($ob = get_transient($transient))) {
     echo '<!-- START: '.$file.' -->'."\n";
 
     // section content
-    echo $file;
-
+    ?>
+<div class="small-24 medium-17 cell">
+<?php
+    if ($archive_page) {
+        echo '    <h1>'.$archive_page->post_title.'</h1>'."\n";
+        echo apply_filters('the_content', $archive_page->post_content);
+    }
+    echo '<div class="grid-x grid-margin-x small-up-1 medium-up-2">'."\n";
+    while (have_posts()) {
+        the_post();
+        echo get_card('card=article&ID='.get_the_id());
+    }
+    echo '</div>'."\n";
+    echo bb_foundation_pagination();
+?>
+</div>
+<aside class="category medium-7 cell hide-for-small-only">
+	<?php
+	   if($post->post_type == 'post'){
+	       echo get_sidebar('category');
+	   } else {
+	       echo get_sidebar();
+	   }
+	?>
+</aside>
+<?php
     // section content - end
     echo '<!-- END:'.$file.' -->'."\n";
 

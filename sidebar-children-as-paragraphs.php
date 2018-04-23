@@ -1,7 +1,6 @@
 <style>
 /* START: <?php echo $section_args['filename'].' - '.date("Y-m-d H:i:s"); ?> */
 @media only screen {
-
     aside .row.sticky-container {margin-bottom: 1rem;}
     aside .menu > li > a { color: <?php echo bb_get_theme_mod('bb_colour4');?>;text-transform: uppercase;font-weight: 700;}
     aside .sticky {background-color: <?php echo bb_get_theme_mod('bb_colour4'); ?>; }
@@ -13,7 +12,6 @@
 
     aside .sticky.is-stuck.is-at-top {margin-top: 0!important;}
     aside {margin-top: -1.5rem;}
-
 }
 @media only screen and (min-width: 40em) { /* <-- min-width 640px - medium screens and up */
      aside .menu > li > a {color: <?php echo bb_get_theme_mod('bb_colour8'); ?>;}
@@ -24,7 +22,6 @@
 @media only screen and (min-width: <?php echo SITE_MAX_WIDTH; ?> ) {}
 /* END: <?php echo $section_args['filename']; ?> */
 </style>
-
 <?php
 /**
  * Children as paragraph sidebar

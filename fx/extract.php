@@ -7,10 +7,10 @@
 * @return string
 */
 function bb_extract($content, $max_chars = 200, $suffix = '...') {
-    if (strlen(strip_tags($content)) > $max_chars) {
-        return substr(strip_tags($content), 0, strrpos(substr(strip_tags($content), 0, $max_chars), ' ')+1).$suffix."\n";
+    if (strlen(strip_tags(strip_shortcodes($content))) > $max_chars) {
+        return substr(strip_tags(strip_shortcodes($content)), 0, strrpos(substr(strip_tags(strip_shortcodes($content)), 0, $max_chars), ' ')+1).$suffix."\n";
     } else {
-        return $content;
+        return strip_shortcodes($content);
     }
 }
 

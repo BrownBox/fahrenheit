@@ -21,11 +21,18 @@ if (!BB_Transients::use_transients()) {
 }
 if (false === ($ob = get_transient($transient))) {
     ob_start();
-?>
+    ?>
 <style>
 /* START: <?php echo $file.' - '.date("Y-m-d H:i:s"); ?> */
-@media only screen {}
-@media only screen and (min-width: 40em) { /* <-- min-width 640px - medium screens and up */ }
+@media only screen {
+    #row-copyright {background-color: <?php echo bb_get_theme_mod('bb_colour8'); ?>;color: <?php echo bb_get_theme_mod('bb_colour1'); ?>;font-weight: 700; padding-top: 1rem; padding-left: .9375rem; padding-right: .9375rem; text-align: center;}
+    #row-copyright div { padding-bottom: 1rem; }
+    #row-copyright a {color:<?php echo bb_get_theme_mod('bb_colour6'); ?>; }
+    #row-copyright li {display: inline-block; text-align: center;}
+    #row-copyright li:after {content:"|"; padding-left: 0.5rem; padding-right: 0.5rem;}
+    #row-copyright li:last-of-type:after {content:" ";}
+}
+@media only screen and (min-width: 40em) { /* <-- min-width 640px - medium screens and up */}
 @media only screen and (min-width: 64em) { /* <-- min-width 1024px - large screens and up */ }
 @media only screen and (min-width: <?php echo ROW_MAX_WIDTH; ?> ) {}
 @media only screen and (min-width: <?php echo SITE_MAX_WIDTH; ?> ) {}
@@ -80,8 +87,16 @@ if (false === ($ob = get_transient($transient))) {
     echo '<!-- START: '.$file.' -->'."\n";
 
     // section content
-    echo $file;
-
+?>
+<div class="small-24 medium-16 cell hide-for-print">
+    <?php echo bb_get_theme_mod('bb_copyright'); ?> | Sitecraft by <a href="http://brownbox.net.au/">Brown Box</a>
+</div>
+<div class="small-24 medium-8 cell hide-for-print no-bullet">
+	<ul>
+    	<?php bb_menu('last'); ?>
+    </ul>
+</div>
+<?php
     // section content - end
     echo '<!-- END:'.$file.' -->'."\n";
 

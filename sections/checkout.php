@@ -21,11 +21,15 @@ if (!BB_Transients::use_transients()) {
 }
 if (false === ($ob = get_transient($transient))) {
     ob_start();
-?>
+    ?>
 <style>
 /* START: <?php echo $file.' - '.date("Y-m-d H:i:s"); ?> */
-@media only screen {}
-@media only screen and (min-width: 40em) { /* <-- min-width 640px - medium screens and up */ }
+@media only screen {
+    body .gform_wrapper.bb_cart_checkout_wrapper .gform_fields .payment_options .gfield_radio li label { margin: 0.2rem 0 0 0.3rem; max-width:100%;}
+    body .gform_wrapper.bb_cart_checkout_wrapper .gform_fields .payment_options .gfield_radio li input { margin-bottom:0.4rem;}
+    body .gform_wrapper.bb_cart_checkout_wrapper .gform_fields .payment_options .gfield_radio li { margin-right:1rem;}
+}
+@media only screen and (min-width: 40em) { /* <-- min-width 640px - medium screens and up */}
 @media only screen and (min-width: 64em) { /* <-- min-width 1024px - large screens and up */ }
 @media only screen and (min-width: <?php echo ROW_MAX_WIDTH; ?> ) {}
 @media only screen and (min-width: <?php echo SITE_MAX_WIDTH; ?> ) {}
@@ -80,7 +84,12 @@ if (false === ($ob = get_transient($transient))) {
     echo '<!-- START: '.$file.' -->'."\n";
 
     // section content
-    echo $file;
+    echo '<div class="small-24 medium-9 medium-order-2 large-7 cell">'."\n";
+    echo do_shortcode('[bb_cart_table]');
+    echo '</div>'."\n";
+    echo '<div class="small-24 medium-15 medium-order-1 large-17 cell">'."\n";
+    echo gravity_form(bb_cart_get_checkout_form(), false, false, false, null, false, 12);
+    echo '</div>'."\n";
 
     // section content - end
     echo '<!-- END:'.$file.' -->'."\n";

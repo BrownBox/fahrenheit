@@ -20,11 +20,11 @@ if (!empty($category)) {
 }
 $recent_posts = get_posts($args);
 ?>
-<div class="small-up-<?php echo $small_count; ?> medium-up-<?php echo $medium_count; ?> large-up-<?php echo $large_count; ?>">
+<div class="grid-x grid-padding-x small-up-<?php echo $small_count; ?> medium-up-<?php echo $medium_count; ?> large-up-<?php echo $large_count; ?>">
 <?php
 foreach ($recent_posts as $recent_post) {
 ?>
-	<div class="column">
+	<div class="cell">
 	    <div class="image" style="background-image: url(<?php echo bb_get_featured_image_url('medium', $recent_post); ?>);"></div>
         <h3 class="title"><?php echo $recent_post->post_title; ?></h3>
         <p class="content"><?php echo apply_filters('the_content', bb_extract($recent_post->post_content)); ?></p>

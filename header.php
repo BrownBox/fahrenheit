@@ -34,13 +34,15 @@ wp_head();
     <body <?php body_class(bb_theme::classes()); ?>>
     <!-- start everything -->
     <div class="everything">
-        <div class="off-canvas-wrapper">
-            <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper><!-- off-canvas left menu -->
 <?php locate_template(array('sections/offcanvas.php'), true); ?>
-                <div class="off-canvas-content" data-off-canvas-content>
-                    <header class="hide-for-print clearfix">
-<?php bb_theme::section('name=hero&file=new-hero.php&inner_class=relative hero-height'); ?>
-<?php bb_theme::section('name=breadcrumbs&file=breadcrumbs.php'); ?>
-                    </header>
-                    <section class="main-section">
-<?php bb_theme::section('name=panels-top&file=panels-top.php&class=full');
+        <div class="off-canvas-content" data-off-canvas-content>
+            <header class="hide-for-print clearfix">
+<?php
+bb_theme::section('name=top&file=top.php&class=full');
+bb_theme::section('name=hero&file=hero.php&inner_class=relative hero-height');
+bb_theme::section('name=breadcrumbs&file=breadcrumbs.php');
+?>
+            </header>
+            <section class="main-section">
+<?php
+bb_show_panels('top');

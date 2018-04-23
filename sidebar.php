@@ -24,9 +24,9 @@ if (empty($menu_items)) { // No children, get siblings
     );
 }
 
-echo '<ul>'."\n";
+echo '<ul class="no-bullet small-up-1">'."\n";
 foreach ($menu_items as $item) {
-    echo '<li>'."\n";
+    echo '<li class="cell">'."\n";
     echo get_card('card=post-preview&ID='.$item->ID);
     echo '</li>'."\n";
 }

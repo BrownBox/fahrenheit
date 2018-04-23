@@ -21,12 +21,20 @@ if (!BB_Transients::use_transients()) {
 }
 if (false === ($ob = get_transient($transient))) {
     ob_start();
-?>
+    ?>
 <style>
 /* START: <?php echo $file.' - '.date("Y-m-d H:i:s"); ?> */
-@media only screen {}
+@media only screen {
+    /* .sticky.is-stuck.is-at-top {border-bottom: 2px solid #eee; margin-top: 0!important;} */
+    h1 {font-weight: 900; color:<?php echo bb_get_theme_mod('bb_colour5'); ?>; }
+    h2 {font-weight: 700; color:<?php echo bb_get_theme_mod('bb_colour5'); ?>; }
+    hr.pre-paragraph {border-bottom: 1px solid #f2f2f2;margin: 0.25rem;}
+}
 @media only screen and (min-width: 40em) { /* <-- min-width 640px - medium screens and up */ }
-@media only screen and (min-width: 64em) { /* <-- min-width 1024px - large screens and up */ }
+@media only screen and (min-width: 64em) { /* <-- min-width 1024px - large screens and up */
+    h1 {padding-bottom: 1rem;}
+    article {padding-bottom: 1rem; max-width: 45rem;}
+}
 @media only screen and (min-width: <?php echo ROW_MAX_WIDTH; ?> ) {}
 @media only screen and (min-width: <?php echo SITE_MAX_WIDTH; ?> ) {}
 /* END: <?php echo $file; ?> */
@@ -80,8 +88,24 @@ if (false === ($ob = get_transient($transient))) {
     echo '<!-- START: '.$file.' -->'."\n";
 
     // section content
-    echo $file;
-
+?>
+<aside class="small-24 medium-8 large-5 cell side-wrapper">
+    <?php get_sidebar('children-as-paragraphs'); ?>
+</aside>
+<div class="small-24 medium-16 large-19 cell">
+<article <?php post_class() ?>>
+	<h1><?php echo apply_filters('the_title', $post->post_title); ?></h1>
+    <?php echo apply_filters('the_content', $post->post_content); ?>
+</article>
+<?php
+    $children = bb_get_children($post);
+    foreach ($children as $child) {
+        echo '<hr class="pre-paragraph">';
+        echo get_card(array('card' => 'paragraph', 'ID' => $child->ID));
+    }
+?>
+</div>
+<?php
     // section content - end
     echo '<!-- END:'.$file.' -->'."\n";
 

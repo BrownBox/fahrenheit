@@ -28,15 +28,15 @@ if (has_post_thumbnail($panel->ID)) {
 }
 switch ($flavour) {
     case 'full_bleed':
-        $bg_wrapper_class = $inner_wrapper_class = 'row-full';
+        $bg_wrapper_class = $inner_wrapper_class = '';
         break;
     case 'fully_contained':
-        $bg_wrapper_class = $inner_wrapper_class = 'row';
+        $bg_wrapper_class = $inner_wrapper_class = 'grid-x grid-padding-x';
         break;
     case 'partial_bleed':
     default:
-        $inner_wrapper_class = 'row';
-        $bg_wrapper_class = 'row-full';
+        $inner_wrapper_class = 'grid-x grid-padding-x';
+        $bg_wrapper_class = '';
         break;
 }
 ?>
@@ -49,7 +49,7 @@ switch ($flavour) {
 if (current_user_can('edit_pages') && $panel->post_parent == 0) {
 ?>
     <div class="edit-panel">
-        <a title="Edit Panel" target="_edit_panel" href="/wp-admin/post.php?post=<?php echo $panel->ID; ?>&action=edit"><i class="fa fa-pencil" aria-hidden="true"></i> <?php echo $panel->menu_order; ?></a>
+        <a title="Edit Panel" target="_edit_panel" href="/wp-admin/post.php?post=<?php echo $panel->ID; ?>&action=edit"><i class="far fa-edit" aria-hidden="true"></i> <?php echo $panel->menu_order; ?></a>
     </div>
 <?php
 }

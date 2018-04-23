@@ -23,7 +23,9 @@ class bb_enqueue {
 
         // Google fonts (configured through Customizer)
         $google_fonts = bb_get_theme_mod('gf');
-        if (!empty($google_fonts)) wp_enqueue_style(ns_.'gf', $google_fonts);
+        if (!empty($google_fonts)) {
+            wp_enqueue_style(ns_.'gf', $google_fonts);
+        }
 
         // Theme styles
         wp_enqueue_style('theme_style', get_stylesheet_directory_uri().'/css/style.css', array(), filemtime(get_stylesheet_directory().'/css/style.css'));
@@ -32,7 +34,7 @@ class bb_enqueue {
 
         // Header scripts
 //         wp_enqueue_script('fontawesome', get_template_directory_uri().'/js/fontawesome-all.min.js', array(), '5.0.2'); Pro version
-        wp_enqueue_script('fontawesome', '//use.fontawesome.com/releases/v5.0.2/js/all.js', array(), '5.0.2'); // Free version
+        wp_enqueue_script('fontawesome', '//use.fontawesome.com/releases/v5.0.10/js/all.js', array(), '5.0.10'); // Free version
 
         // Footer sripts
         wp_enqueue_script('what-input', get_template_directory_uri().'/js/vendor/what-input.js', array('jquery'), '4.2.0', true);

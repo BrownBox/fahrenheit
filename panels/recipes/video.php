@@ -1,4 +1,4 @@
-<div class="column">
+<div class="cell">
     <div class="wrapper">
         <a class="link" data-open="video-modal-<?php echo $panel->ID; ?>"><i class="fa fa-youtube-play fa-5x" aria-hidden="true"></i></a>
     </div>

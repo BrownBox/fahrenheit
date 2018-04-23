@@ -1,4 +1,4 @@
-<div class="column">
+<div class="cell">
     <div class="wrapper">
 <?php
 $destination = get_post_meta($panel->ID, 'destination', true);
