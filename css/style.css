@@ -145,7 +145,7 @@ aside .sticky {background-color: white;}
 
 /* Edit link */
 .edit-panel a {background: rgba(0, 0, 0, 1) none repeat scroll 0 0; color: #fff !important; display: table-caption; margin-top: -3rem; opacity: 0.2; padding: 0.5rem 1rem; white-space: nowrap; position: relative; z-index: 1000;}
-.edit-panel a > * {color:#fff;}
+.edit-panel a * {color:#fff;}
 
 /* Children as Slider */
 .panel-slider.slick-slider {padding: 0;}
