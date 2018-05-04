@@ -88,20 +88,24 @@ if (false === ($ob = get_transient($transient))) {
     $phone = bb_get_theme_mod(ns_.'contact_phone');
     $address = bb_get_theme_mod(ns_.'contact_address');
 ?>
-<div class="small-24 medium-7 cell hide-for-print" data-swiftype-index="false">
-    <img class="logo" src="<?php echo $logo_footer; ?>" alt="">
-    <p class="h3 about"><?php echo $footer_text; ?></p>
+<div class="small-24 medium-7 cell hide-for-print">
 <?php
-     echo '<div class="search_wrapper">'."\n";
-     get_search_form();
-     echo '  <a href="#" class="button button-search margin-zero radius-zero" onclick="jQuery(this).parent().find(\'form.search-form\').submit();">'."\n";
-     echo '      <span class="show-for-sr">Search</span>'."\n";
-     echo '      <span aria-hidden="true"><i class="fa fa-search margin-zero" aria-hidden="true"></i></span>'."\n";
-     echo '  </a>'."\n";
-     echo '</div>'."\n";
+    if (!empty($logo_footer)) {
+        echo '<img class="logo" src="<?php echo $logo_footer; ?>" alt="">'."\n";
+    }
+    if (!empty($footer_text)) {
+        echo '<p class="h3 about"><?php echo $footer_text; ?></p>'."\n";
+    }
+    echo '<div class="search_wrapper">'."\n";
+    get_search_form();
+    echo '  <a href="#" class="button button-search margin-zero radius-zero" onclick="jQuery(this).parent().find(\'form.search-form\').submit();">'."\n";
+    echo '      <span class="show-for-sr">Search</span>'."\n";
+    echo '      <span aria-hidden="true"><i class="fa fa-search margin-zero" aria-hidden="true"></i></span>'."\n";
+    echo '  </a>'."\n";
+    echo '</div>'."\n";
 ?>
 </div>
-<div class="show-for-medium medium-11 cell grid-x grid-margin-x">
+<div class="show-for-medium medium-11 cell grid-x grid-margin-x hide-for-print">
     <ul class="no-bullet medium-12 cell">
         <?php bb_menu(array('menu' => 'footer-left', 'display_children' => true)); ?>
     </ul>
@@ -109,7 +113,7 @@ if (false === ($ob = get_transient($transient))) {
         <?php bb_menu(array('menu' => 'footer-right','display_children' => true)); ?>
     </ul>
 </div>
-<div class="show-for-small-only small-24 cell">
+<div class="show-for-small-only small-24 cell hide-for-print">
     <ul class="no-bullet grid-x grid-margin-x small-up-1">
         <?php bb_menu(array('menu' => 'footer-left', 'display_children' => false, 'li_class' => 'cell')); ?>
         <?php bb_menu(array('menu' => 'footer-right', 'display_children' => false, 'li_class' => 'cell')); ?>
