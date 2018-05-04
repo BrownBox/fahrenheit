@@ -124,7 +124,7 @@ if (false === ($ob = get_transient($transient))) {
     <hr class="menu-title">
     <p><?php echo $address; ?></p>
     <p><i class="fas fa-envelope fa-fw" aria-hidden="true"></i> <?php echo $email; ?></p>
-    <p><i class="fas fa-edit fa-fw" aria-hidden="true"></i> <?php echo $phone; ?></p>
+    <p><i class="fas fa-phone fa-fw" aria-hidden="true"></i> <?php echo $phone; ?></p>
 </div>
 <?php
     // section content - end
