@@ -34,7 +34,7 @@ class BB_Transients {
 
         $key = md5(dirname($file).'/'.$file);
 
-        $t_name = ns_.$local['folder'].'_'.$local['file'].'_'.$key;
+        $t_name = ns_.$local['folder'].'_'.$local['file'].'_'.$name.'_'.$key;
 
         return $t_name;
     }

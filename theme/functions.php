@@ -366,13 +366,14 @@ class bb_theme {
 
     static function setup_data($file, $term = MEDIUM_TERM) {
         global $post;
-        $transient_name = ns_.'var_'.$post->ID;
+        $filename = str_replace(get_stylesheet_directory(), '', $file);
+        $transient_name = ns_.'var_'.$filename.'_'.$post->ID;
         if (!BB_Transients::use_transients()) {
             delete_transient($transient_name);
         }
         if (false === ($var = get_transient($transient_name))) {
             $var = array(
-                    'file' => str_replace(get_stylesheet_directory(), '', $file),
+                    'file' => $filename,
                     'meta' => array(),
                     'ancestors' => array(),
                     'ancestor_string' => '',
