@@ -38,8 +38,8 @@ wp_head();
         <div class="off-canvas-content" data-off-canvas-content>
             <header class="hide-for-print clearfix">
 <?php
-bb_theme::section('name=top&file=top.php&class=full');
-bb_theme::section('name=hero&file=hero.php&inner_class=relative hero-height');
+bb_theme::section('name=top&file=top.php');
+bb_theme::section('name=hero&file=hero.php&class=full&inner_class=row relative hero-height ');
 bb_theme::section('name=breadcrumbs&file=breadcrumbs.php');
 ?>
             </header>

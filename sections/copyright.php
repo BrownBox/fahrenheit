@@ -25,9 +25,9 @@ if (false === ($ob = get_transient($transient))) {
 <style>
 /* START: <?php echo $file.' - '.date("Y-m-d H:i:s"); ?> */
 @media only screen {
-    #row-copyright {background-color: <?php echo bb_get_theme_mod('bb_colour2'); ?>;color: <?php echo bb_get_theme_mod('bb_colour1'); ?>;font-weight: 700; font-size:0.9rem; padding-top: 1rem; padding-left: .9375rem; padding-right: .9375rem; text-align: center;}
+    #row-copyright {background-color: <?php echo bb_get_theme_mod('bb_colour2'); ?>;color: <?php echo bb_get_theme_mod('bb_colour1'); ?>;font-weight: 700; font-size:0.8rem; padding-top: 1rem; padding-left: .9375rem; padding-right: .9375rem; }
     #row-copyright div { padding-bottom: 1rem; }
-    #row-copyright a {color:<?php echo bb_get_theme_mod('bb_colour7'); ?>; }
+    #row-copyright a {color:<?php echo bb_get_theme_mod('bb_colour6'); ?>; }
     #row-copyright li {display: inline-block; text-align: center;}
     #row-copyright li:after {content:"|"; padding-left: 0.5rem; padding-right: 0.5rem;}
     #row-copyright li:last-of-type:after {content:" ";}
@@ -88,13 +88,12 @@ if (false === ($ob = get_transient($transient))) {
 
     // section content
 ?>
-<div class="small-24 medium-16 cell hide-for-print">
-    © <?php echo bb_get_theme_mod('bb_copyright'); ?> | Sitecraft by <a href="http://brownbox.net.au/">Brown Box</a>
+
+<div class="gf2 small-24 hide-for-medium text-center cell hide-for-print">
+    © <?php echo date('Y ').bb_get_theme_mod('bb_copyright'); ?> | <a class="gf2" href="/privacy">Privacy Policy</a><br>Sitecraft by <a class="gf2" href="http://brownbox.net.au/">Brown Box</a>
 </div>
-<div class="small-24 medium-8 cell hide-for-print no-bullet">
-	<ul>
-    	<?php bb_menu('last'); ?>
-    </ul>
+<div class="gf2 show-for-medium medium-24 cell hide-for-print" data-swiftype-index="false">
+    © <?php echo date('Y ').bb_get_theme_mod('bb_copyright'); ?> | <a class="gf2" href="/privacy">Privacy Policy</a> | Sitecraft by <a class="gf2" href="http://brownbox.net.au/">Brown Box</a>
 </div>
 <?php
     // section content - end

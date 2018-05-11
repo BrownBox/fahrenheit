@@ -91,7 +91,7 @@ if (false === ($ob = get_transient($transient))) {
         the_post();
 ?>
     <article <?php post_class($class); ?>>
-        <h1><?php the_title(); ?></h1>
+        <!-- <h1><?php //the_title(); ?></h1> -->
 		<?php the_content(); ?>
     </article>
 <?php

@@ -52,17 +52,17 @@ function bb_theme_customizer(WP_Customize_Manager $wp_customize) {
             'section' => ns_.'theme_images_section',
             'priority' => 35,
     )));
-    // favicon
-    $wp_customize->add_setting(ns_.'favicon', array(
-            'default' => esc_url(get_template_directory_uri()).'/images/favicon.png',
-            'sanitize_callback' => 'esc_url_raw',
-            'type' => 'option',
-    ));
-    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, ns_.'favicon', array(
-            'label' => 'Favicon',
-            'section' => ns_.'theme_images_section',
-            'priority' => 40,
-    )));
+    // favicon (Overridden by Site Icon)
+//     $wp_customize->add_setting(ns_.'favicon', array(
+//             'default' => esc_url(get_template_directory_uri()).'/images/favicon.png',
+//             'sanitize_callback' => 'esc_url_raw',
+//             'type' => 'option',
+//     ));
+//     $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, ns_.'favicon', array(
+//             'label' => 'Favicon',
+//             'section' => ns_.'theme_images_section',
+//             'priority' => 40,
+//     )));
     // default featured image
     $wp_customize->add_setting(ns_.'default_featured_image', array(
             'default' => '',
@@ -339,7 +339,7 @@ function bb_theme_customizer(WP_Customize_Manager $wp_customize) {
 
     // Contact Details
     $wp_customize->add_section(ns_.'contacts_section', array(
-            'title' => __('Contact Details', ns_),
+            'title' => __('Footer & Contact Details', ns_),
             'priority' => 60,
     ));
     $wp_customize->add_setting(ns_.'contact_email', array(
@@ -362,6 +362,27 @@ function bb_theme_customizer(WP_Customize_Manager $wp_customize) {
             'type' => 'text',
             'priority' => 20,
     ));
+    $wp_customize->add_setting(ns_.'contact_address', array(
+            //'sanitize_callback' => 'sanitize_text_field', // This will do for now
+            'type' => 'option',
+    ));
+    $wp_customize->add_control(ns_.'contact_address', array(
+            'label' => 'Address',
+            'section' => ns_.'contacts_section',
+            'type' => 'textarea',
+            'priority' => 30,
+    ));
+    $wp_customize->add_setting(ns_.'footer_text', array(
+            //'sanitize_callback' => 'sanitize_text_field', // This will do for now
+            'type' => 'option',
+    ));
+    $wp_customize->add_control(ns_.'footer_text', array(
+            'label' => 'Footer Text',
+            'section' => ns_.'contacts_section',
+            'type' => 'textarea',
+            'priority' => 30,
+    ));
+
 
     // Copyright
     $wp_customize->add_section(ns_.'copyright_section', array(

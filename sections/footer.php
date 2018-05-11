@@ -25,16 +25,16 @@ if (false === ($ob = get_transient($transient))) {
 <style>
 /* START: <?php echo $file.' - '.date("Y-m-d H:i:s"); ?> */
 @media only screen {
-    #row-footer {padding-top:1rem; border-top: 1px solid #cacaca;}
+    #row-footer {padding-top:1rem; border-top: 1px solid #cacaca; background:<?php echo bb_get_theme_mod('bb_colour4'); ?>; }
     #row-footer i {color:<?php echo bb_get_theme_mod('bb_colour6'); ?>; padding-right: 0.5rem;}
-    #row-footer .logo {width: 100%;}
-    #row-footer .logo-registered {max-width: 80%; padding-bottom: 1rem;}
+    #row-footer .logo {width: 100%;padding-bottom:1rem;}
+/*     #row-footer .logo-registered {max-width: 80%; padding-bottom: 1rem;} */
     #row-footer .about {padding-top: 1rem; font-size: 1rem; font-weight: 400;}
 
     #row-footer .search_wrapper {padding-bottom: 1rem;}
     #row-footer .search_wrapper .search-form {border: 2px solid <?php echo bb_get_theme_mod('bb_colour6');?>; position:relative;}
     #row-footer .search_wrapper .search-form input {margin-bottom:0; border-radius: 0;}
-    #row-footer .search_wrapper .search-form input[type=submit] {position: absolute; top: 0; right: 0; padding: 0.39rem 1rem; border:none; border-radius: 0; background-color: <?php echo bb_get_theme_mod('bb_colour6');?>; color:<?php echo bb_get_theme_mod('bb_colour1');?>;}
+    #row-footer .search_wrapper .search-form input[type=submit] {position: absolute; top: 0; right: 0; padding: 0.69rem 1rem; border:none; border-radius: 0; background-color: <?php echo bb_get_theme_mod('bb_colour6');?>; color:<?php echo bb_get_theme_mod('bb_colour1');?>;}
     #row-footer .button {position: absolute; margin-top: -2.7rem; background-color: transparent;}
     #row-footer .search_wrapper .search-form input {padding-left: 2rem;}
 
@@ -42,12 +42,11 @@ if (false === ($ob = get_transient($transient))) {
     #row-footer .h4 {font-size: 1.2rem; margin-bottom: 0.4rem;}
 
     #row-footer li {text-align: center; list-style: none; font-size: 1.2rem; padding-bottom: 0.4rem;}
-    #row-footer li > a {color: <?php echo bb_get_theme_mod('bb_colour8');?>; font-size: 1.2rem;}
+    #row-footer li > a {color: <?php echo bb_get_theme_mod('bb_colour2');?>; font-size: 1.2rem;}
     #row-footer ul {margin-left: 0;}
 }
 @media only screen and (min-width: 40em) { /* <-- min-width 640px - medium screens and up */
     #row-footer li > a {font-size: 0.9rem;}
-    #row-footer .green-line > a {border-bottom: 4px solid <?php echo bb_get_theme_mod('bb_colour6');?>; display:block; font-size: 1.25rem; margin-bottom: 0.4rem;}
     #row-footer .h4 {margin-bottom: 0.5rem;}
     #row-footer li {text-align: left; padding-left: 0; padding-right: 1.5rem; padding-bottom: 0.2rem;}
     #row-footer .contact {padding-top: 0.2rem;}
@@ -91,10 +90,10 @@ if (false === ($ob = get_transient($transient))) {
 <div class="small-24 medium-7 cell hide-for-print">
 <?php
     if (!empty($logo_footer)) {
-        echo '<img class="logo" src="<?php echo $logo_footer; ?>" alt="">'."\n";
+        echo '<img class="logo" src="'.$logo_footer.'" alt="">'."\n";
     }
     if (!empty($footer_text)) {
-        echo '<p class="h3 about"><?php echo $footer_text; ?></p>'."\n";
+        echo '<p class="h3 about">'.$footer_text.'</p>'."\n";
     }
     echo '<div class="search_wrapper">'."\n";
     get_search_form();
@@ -122,7 +121,7 @@ if (false === ($ob = get_transient($transient))) {
 <div class="small-24 medium-6 cell contact">
     <p class="h4">Contact Us</p>
     <hr class="menu-title">
-    <p><?php echo $address; ?></p>
+    <p><?php echo apply_filters('the_content', $address); ?></p>
     <p><i class="fas fa-envelope fa-fw" aria-hidden="true"></i> <?php echo $email; ?></p>
     <p><i class="fas fa-phone fa-fw" aria-hidden="true"></i> <?php echo $phone; ?></p>
 </div>
