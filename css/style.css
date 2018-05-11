@@ -54,7 +54,7 @@ nav.top-bar, nav.top-bar ul {background-color:transparent;}
 
 .menu > li {padding-right:2rem;}
 .menu > a {padding: .7rem 0;}
-.menu > a:hover, .menu .active > a {border-bottom:2px solid; background:transparent;padding: .7rem 0rem;margin-right:1rem;}
+.menu > a:hover, .menu .active > a {border-bottom:2px solid; background:transparent;padding: .7rem 0rem;}
 
 #template-name {background-color: rgba(255, 255, 255, 0.25); bottom: 0; display: inline-block; opacity: 0.5; padding: 1rem; position: fixed; right: 0;}
 
