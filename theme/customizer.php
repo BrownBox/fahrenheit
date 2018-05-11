@@ -611,7 +611,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="'.$colour1.'"
 
     // Custom styles including key dimensions
     $styles .= <<<EOS
-.row {max-width: $row_max_width;}
+.grid-container, .grid-container.full > .grid-x, .grid-container.full > .grid-y {max-width: $row_max_width;}
 .everything {max-width: $site_max_width;}
 .hero-height {min-height: $hero_height_other_small; overflow: hidden;}
 .home .hero-height {min-height: $hero_height_home_small;}

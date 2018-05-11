@@ -1,7 +1,7 @@
 <?php
 bb_show_panels('bottom');
-bb_theme::section('name=footer&file=footer.php&class=hide-for-print full&inner_class=row&type=footer');
-bb_theme::section('name=copyright&file=copyright.php&class=hide-for-print full&inner_class=row&type=footer');
+bb_theme::section('name=footer&file=footer.php&class=hide-for-print full&type=footer');
+bb_theme::section('name=copyright&file=copyright.php&class=hide-for-print full&type=footer');
 ?>
                 </section>
             </div><!-- end off-canvas-content -->

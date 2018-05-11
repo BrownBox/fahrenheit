@@ -39,7 +39,7 @@ wp_head();
             <header class="hide-for-print clearfix">
 <?php
 bb_theme::section('name=top&file=top.php');
-bb_theme::section('name=hero&file=hero.php&class=full&inner_class=row relative hero-height ');
+bb_theme::section('name=hero&file=hero.php&class=full&inner_class=relative hero-height ');
 bb_theme::section('name=breadcrumbs&file=breadcrumbs.php');
 ?>
             </header>

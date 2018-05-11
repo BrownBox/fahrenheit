@@ -41,7 +41,9 @@ if (false === ($ob = get_transient($transient))) {
     #row-hero .hero-content {bottom: 1rem; left: 0; position: absolute; margin: 0 0.9375rem;}
     #row-hero h1 {z-index: 99;position: relative;}
 }
-@media only screen and (min-width: 40em) { /* <-- min-width 640px - medium screens and up */}
+@media only screen and (min-width: 40em) { /* <-- min-width 640px - medium screens and up */
+     #row-hero .navigation {position:relative; z-index:99;}
+}
 @media only screen and (min-width: 64em) { /* <-- min-width 1024px - large screens and up */ }
 @media only screen and (min-width: <?php echo ROW_MAX_WIDTH; ?> ) {}
 @media only screen and (min-width: <?php echo SITE_MAX_WIDTH; ?> ) {}
@@ -113,6 +115,12 @@ if (false === ($ob = get_transient($transient))) {
     // section content
     if (!empty($images['large'])) {
 ?>
+<div class="navigation show-for-medium cell">
+       <ul class="menu align-right">
+      <?php bb_menu('main'); ?>
+       </ul>
+   </div>
+
 <div class="hero-content">
 <?php
     if (!$meta['hide_title']) {
@@ -124,7 +132,9 @@ if (false === ($ob = get_transient($transient))) {
     if (!empty($meta['hero_destination']) && !empty($meta['hero_action_text'])) {
         echo '<a class="button cta border1 text1 bg0 hbg2 hborder2" href="'.$meta['hero_destination'].'">'.$meta['hero_action_text'].'</a>'."\n";
     }
+
 ?>
+
 </div>
 <?php
     }
