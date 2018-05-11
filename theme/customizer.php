@@ -363,32 +363,6 @@ function bb_theme_customizer(WP_Customize_Manager $wp_customize) {
             'priority' => 20,
     ));
 
-    // Announcement
-    $wp_customize->add_section(ns_.'announcement_section', array(
-            'title' => __('Announcement Details', ns_),
-            'priority' => 60,
-    ));
-    $wp_customize->add_setting(ns_.'announcement_text', array(
-            'sanitize_callback' => 'sanitize_text_field',
-            'type' => 'option',
-    ));
-    $wp_customize->add_control(ns_.'announcement_text', array(
-            'label' => 'Announcement Text',
-            'section' => ns_.'announcement_section',
-            'type' => 'text',
-            'priority' => 10,
-    ));
-    $wp_customize->add_setting(ns_.'announcement_link', array(
-            'sanitize_callback' => 'sanitize_text_field',
-            'type' => 'option',
-    ));
-    $wp_customize->add_control(ns_.'announcement_link', array(
-            'label' => 'Announcement Link',
-            'section' => ns_.'announcement_section',
-            'type' => 'text',
-            'priority' => 20,
-    ));
-
     // Copyright
     $wp_customize->add_section(ns_.'copyright_section', array(
             'title' => __('Copyright Statement', ns_),

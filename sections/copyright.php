@@ -25,9 +25,9 @@ if (false === ($ob = get_transient($transient))) {
 <style>
 /* START: <?php echo $file.' - '.date("Y-m-d H:i:s"); ?> */
 @media only screen {
-    #row-copyright {background-color: <?php echo bb_get_theme_mod('bb_colour8'); ?>;color: <?php echo bb_get_theme_mod('bb_colour1'); ?>;font-weight: 700; padding-top: 1rem; padding-left: .9375rem; padding-right: .9375rem; text-align: center;}
+    #row-copyright {background-color: <?php echo bb_get_theme_mod('bb_colour2'); ?>;color: <?php echo bb_get_theme_mod('bb_colour1'); ?>;font-weight: 700; font-size:0.9rem; padding-top: 1rem; padding-left: .9375rem; padding-right: .9375rem; text-align: center;}
     #row-copyright div { padding-bottom: 1rem; }
-    #row-copyright a {color:<?php echo bb_get_theme_mod('bb_colour6'); ?>; }
+    #row-copyright a {color:<?php echo bb_get_theme_mod('bb_colour7'); ?>; }
     #row-copyright li {display: inline-block; text-align: center;}
     #row-copyright li:after {content:"|"; padding-left: 0.5rem; padding-right: 0.5rem;}
     #row-copyright li:last-of-type:after {content:" ";}
@@ -89,7 +89,7 @@ if (false === ($ob = get_transient($transient))) {
     // section content
 ?>
 <div class="small-24 medium-16 cell hide-for-print">
-    <?php echo bb_get_theme_mod('bb_copyright'); ?> | Sitecraft by <a href="http://brownbox.net.au/">Brown Box</a>
+    © <?php echo bb_get_theme_mod('bb_copyright'); ?> | Sitecraft by <a href="http://brownbox.net.au/">Brown Box</a>
 </div>
 <div class="small-24 medium-8 cell hide-for-print no-bullet">
 	<ul>
