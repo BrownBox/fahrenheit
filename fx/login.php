@@ -9,7 +9,7 @@ function bb_login_redirect($redirect_to, $request, $user) {
 
 add_filter('admin_init', 'bb_admin_redirect', 10, 3);
 function bb_admin_redirect() {
-    if (!current_user_can('manage_options')) {
+    if (!current_user_can('manage_options') && !wp_doing_ajax()) {
         wp_redirect(site_url('/'));
         exit;
     }
