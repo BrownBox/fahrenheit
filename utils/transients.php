@@ -12,6 +12,7 @@ class BB_Transients {
     public function __construct() {
         add_action('save_post', array($this, 'save_post'), 10, 3);
         add_action('delete_post', array($this, 'delete_post'), 10, 1);
+        add_action('updated_post_meta', array($this, 'updated_post_meta'), 10, 4);
         add_action('wp_update_nav_menu', array($this, 'wp_update_nav_menu'), 10, 2);
     }
 
@@ -174,6 +175,17 @@ class BB_Transients {
      * @param integer $post_id
      */
     public function delete_post($post_id) {
+        $this->clear_post_transients($post_id);
+    }
+
+    /**
+     * Fires on updated_post_meta hook to clear transients associated with the post
+     * @param integer $meta_id
+     * @param integer $post_id
+     * @param string $meta_key
+     * @param mixed $_meta_value
+     */
+    public function updated_post_meta($meta_id, $post_id, $meta_key, $_meta_value) {
         $this->clear_post_transients($post_id);
     }
 
