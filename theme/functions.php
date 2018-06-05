@@ -367,7 +367,8 @@ class bb_theme {
     static function setup_data($file, $term = MEDIUM_TERM) {
         global $post;
         $filename = str_replace(get_stylesheet_directory(), '', $file);
-        $transient_name = ns_.'var_'.$filename.'_'.$post->ID;
+        $t_args = array('name' => 'var', 'file' => $filename);
+        $transient_name = BB_Transients::name($t_args);
         if (!BB_Transients::use_transients()) {
             delete_transient($transient_name);
         }
@@ -413,7 +414,7 @@ class bb_theme {
 
     static function custom_adminbar($wp_admin_bar) {
         // Environment indicator
-        if (!defined('WP_ENV')) {
+        if (!defined('WP_BB_ENV')) {
             define('WP_BB_ENV', 'DEVELOPMENT');
         }
 
