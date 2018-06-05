@@ -21,7 +21,7 @@ if (!BB_Transients::use_transients()) {
 }
 if (false === ($ob = get_transient($transient))) {
     ob_start();
-    ?>
+?>
 <style>
 /* START: <?php echo $file.' - '.date("Y-m-d H:i:s"); ?> */
 @media only screen {
