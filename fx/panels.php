@@ -194,6 +194,7 @@ function bb_panels_get_post_types() {
     $types = array(
             'post' => 'Posts',
     );
+    $ignore = apply_filters('bb_panels_ignore_post_types', array());
     foreach ($post_types as $post_type) {
         if (!in_array($post_type->name, $ignore)) {
             $types[$post_type->name] = $post_type->label;
