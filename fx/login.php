@@ -35,21 +35,13 @@ function bb_login_footer() {
 ?>
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        jQuery("p#backtoblog a").attr("href", '<?php echo esc_js(site_url('/')); ?>').html('← Back to Better Marriages');
+        jQuery("p#backtoblog a").attr("href", '<?php echo esc_js(site_url('/')); ?>').html('← Back to Home');
     });
 </script>
 <style>
-html {background: none !important;}
-html body.login {background-color: <?php echo bb_get_theme_mod('colour2'); ?>;}
-body.login div#login h1 a {background-image: url(<?php echo bb_get_theme_mod(ns_.'logo_large')?>) !important; padding-bottom: 30px; margin: 0 auto; background-size: contain; width: 220px; height: 109px;}
-body.login #login {width:520px;}
-.login form {border-radius:3px; border:3px solid <?php echo bb_get_theme_mod('colour3'); ?>; -moz-box-shadow: none; -webkit-box-shadow: none; box-shadow: none!important; position: relative; z-index: 1; background-color: white;}
-body.login div#login form p label {color: <?php echo bb_get_theme_mod('colour6'); ?>; font-size:0.9rem;}
-body.login #loginform p.submit .button-primary, body.wp-core-ui .button-primary {background-color: <?php echo bb_get_theme_mod('colour3'); ?> !important; font-size:14px; border: none !important; text-shadow: none; box-shadow: none;}
-body.login #loginform p.submit .button-primary:hover, body.login #loginform p.submit .button-primary:focus, body.wp-core-ui .button-primary:hover {background-color: rgb(<?php bb_colour_lighter(bb_get_theme_mod('colour3')); ?>) !important;}
-body.login div#login form .input, .login input[type="text"] {color: <?php echo bb_get_theme_mod('colour6'); ?>; font-size:1.25rem; -webkit-box-shadow: 0 0 0px 1000px white inset; -webkit-text-fill-color: <?php echo bb_get_theme_mod('colour6'); ?> !important;}
-body.login #nav a, body.login #backtoblog a {color: <?php echo bb_get_theme_mod('colour6'); ?> !important;}
-body.login #nav, body.login #backtoblog {text-shadow: none;}
+
+body.login div#login h1 a {background-image: url(<?php echo bb_get_theme_mod(ns_.'logo_large')?>) !important; margin: 0 auto; background-size: contain; width: 220px; height: 109px;}
+
 </style>
 <?php
 }
