@@ -50,7 +50,7 @@ unset($ob, $t_args, $transient);
 // ----------------------------
 // 4. setup output transient/s
 // ----------------------------
-$t_args = array('name' => 'markup', 'file' => $file);
+$t_args = array('name' => 'markup'.$transient_suffix, 'file' => $file);
 $transient = BB_Transients::name($t_args);
 if (!BB_Transients::use_transients()) {
     delete_transient($transient);

@@ -367,7 +367,7 @@ class bb_theme {
     static function setup_data($file, $term = MEDIUM_TERM) {
         global $post;
         $filename = str_replace(get_stylesheet_directory(), '', $file);
-        $t_args = array('name' => 'var', 'file' => $filename);
+        $t_args = array('name' => 'var_'.$post->ID, 'file' => $filename);
         $transient_name = BB_Transients::name($t_args);
         if (!BB_Transients::use_transients()) {
             delete_transient($transient_name);
