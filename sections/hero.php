@@ -10,13 +10,12 @@
 global $post;
 extract(bb_theme::setup_data(__FILE__));
 $t_period = LONG_TERM;
-if (is_archive()) {
-    if (is_post_type_archive() || (is_home() && !is_front_page())) {
-        $title = $archive_page->post_title;
-    } else {
-        $term = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy'));
-        $title = $term->name;
-    }
+if (is_post_type_archive() || (is_home() && !is_front_page())) {
+    $title = $archive_page->post_title;
+    $images = bb_get_hero_images($archive_page);
+} elseif (is_archive()) {
+    $term = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy'));
+    $title = $term->name;
     $images = bb_get_hero_images($archive_page);
 } else {
     $title = get_the_title();
